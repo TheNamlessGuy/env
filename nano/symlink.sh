@@ -1,0 +1,1 @@
+ln -s "$(readlink -f $(dirname ${BASH_SOURCE[0]})/.nanorc)" ~/.nanorc

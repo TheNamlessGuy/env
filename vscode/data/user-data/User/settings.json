@@ -1,0 +1,27 @@
+{
+    "editor.fontLigatures": false,
+    "editor.renderWhitespace": "boundary",
+    "editor.tabSize": 2,
+    "editor.unicodeHighlight.nonBasicASCII": false,
+    "explorer.compactFolders": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "extensions.ignoreRecommendations": true,
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true,
+    "git.ignoreMissingGitWarning": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "telemetry.telemetryLevel": "off",
+    "workbench.colorTheme": "SynthWave '84",
+    "workbench.editor.enablePreview": false,
+    "workbench.list.openMode": "doubleClick",
+    "workbench.startupEditor": "none",
+
+    "files.exclude": {
+        "**/__pycache__": true
+    },
+
+    "[markdown]": {
+        "files.trimTrailingWhitespace": false
+    },
+}

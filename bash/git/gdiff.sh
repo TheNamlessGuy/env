@@ -1,0 +1,1 @@
+alias gdiff="git diff"

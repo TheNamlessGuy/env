@@ -1,0 +1,8 @@
+[user]
+	name = TheNamlessGuy
+	email = bragux+github@hotmail.com
+[pager]
+	diff = less
+	tag = cat
+	branch = cat
+	config = cat
