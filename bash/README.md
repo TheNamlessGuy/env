@@ -19,3 +19,5 @@ When you need to define something thats only relevant to your local environment,
 `REMINDER_LOCATION` can be defined to change the location of the reminder file (default: `<REPO ROOT>/bash/reminder/.reminders`)  
 `NOTES_LOCATION` can be defined to change the location of the notes file (default: `<REPO ROOT>/bash/notes/.notes`)  
 `SCT_LOCATION` can be defined to change the location of the sct folder (default: `<REPO ROOT>/bash/sct/.sct/`)  
+`REPO` can be defined to your local folder where you clone your repositories in order to make the `repo` command work properly  
+`REPO_SOURCE_FILES` can be defined as an array in order to make the `repo` command source the proper files upon entry (default: `("env.sh")`)  

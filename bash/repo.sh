@@ -36,12 +36,15 @@ repo() {
   else
     cd "${repo}" &> /dev/null
     if [[ "$?" != "0" ]]; then
-      echo >&2 "Couldn't find '${repo}'"
-      return 1
+      cd "${REPO}/${repo}" &> /dev/null
+      if [[ "$?" != "0" ]]; then
+        echo >&2 "Couldn't find '${repo}'"
+        return 1
+      fi
     fi
   fi
 
-  set-title --cur
+  set-title .
 
   local file=""
   if [[ -z "${NO_SOURCE}" ]]; then
