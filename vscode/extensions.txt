@@ -1,1 +1,2 @@
+eriklynd.json-tools@1.0.2
 RobbOwen.synthwave-vscode@0.1.15

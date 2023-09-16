@@ -21,3 +21,4 @@ When you need to define something thats only relevant to your local environment,
 `SCT_LOCATION` can be defined to change the location of the sct folder (default: `<REPO ROOT>/bash/sct/.sct/`)  
 `REPO` can be defined to your local folder where you clone your repositories in order to make the `repo` command work properly  
 `REPO_SOURCE_FILES` can be defined as an array in order to make the `repo` command source the proper files upon entry (default: `("env.sh")`)  
+`VSCODE_BINARY_LOCATION` can be defined to the binary of vscode (duh), in order to make the `vscode` command work properly  

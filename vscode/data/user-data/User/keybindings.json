@@ -14,5 +14,13 @@
     "key": "shift+alt+a",
     "command": "-editor.action.blockComment",
     "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+alt+m",
+    "command": "-extension.prettyJSON"
+  },
+  {
+    "key": "alt+m",
+    "command": "-extension.minifyJSON"
   }
 ]
