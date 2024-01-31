@@ -10,7 +10,7 @@ cclear() {
     fi
   fi
 
-  ls -lAh
+  ls -lAhv --group-directories-first
 }
 
 alias c="cclear"

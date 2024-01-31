@@ -1,1 +1,1 @@
-alias lla="ls -lAh"
+alias lla="ls -lAhv --group-directories-first"
