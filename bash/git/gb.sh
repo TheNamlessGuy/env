@@ -1,7 +1,9 @@
 gb() {
-  local arr=("$@")
-  [[ -z "${arr}" ]] && arr+=("-vv")
-  git branch "${arr[@]}"
+  if [[ -z "$@" ]]; then
+    "$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")/gb.py"
+  else
+     git branch $@
+  fi
 }
 
 _comp_gb() {

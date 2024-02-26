@@ -16,6 +16,7 @@
     "workbench.editor.enablePreview": false,
     "workbench.list.openMode": "doubleClick",
     "workbench.startupEditor": "none",
+    "update.mode": "none",
 
     "files.exclude": {
         "**/__pycache__": true

@@ -105,19 +105,16 @@ opts = {
   'ignore': [],
 }
 
-i = 0
-while i < len(args):
-  if args[i].startswith('-c'):
+for arg in args:
+  if arg.startswith('-c'):
     opts['collapse'] = args[i][2:]
-    del args[i]
-  elif args[i] == '--ignore':
+  elif arg == '--ignore':
     opts['ignore'].append(args[i + 1])
-    del args[i + 1]
-    del args[i]
   else:
-    i += 1
+    print("Unknown flag '{0}'".format(arg))
+    exit(1)
 
-output = subprocess.check_output(['git', 'status', '--porcelain', '-s'] + args).decode('utf-8')[:-1].split('\n')
+output = subprocess.check_output(['git', 'status', '--porcelain', '-s']).decode('utf-8')[:-1].split('\n')
 for line in output:
   status = line[:2]
   filename = line[3:]
