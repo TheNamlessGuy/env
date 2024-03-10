@@ -1,1 +1,1 @@
-alias lla="ls -lAhv --group-directories-first"
+alias lla="ls -lAhv --group-directories-first --time-style=long-iso"
