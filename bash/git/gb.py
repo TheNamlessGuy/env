@@ -87,9 +87,22 @@ longest = {
   'contents': longest_len(columns['contents'], start = len(header['contents'])),
 }
 
-def justify(key, i):
+def justify(key, i, next_key):
   diff = longest[key] - len(columns[key][i][0])
-  return columns[key][i][1].ljust(len(columns[key][i][1]) + diff)
+  result = columns[key][i][1]
+
+  if diff > 0 and columns['head'][i][0] == '*':
+    if len(result) > 0:
+      diff -= 1
+      result += ' '
+    result += '\033[48;5;235m'
+
+  result = result.ljust(len(result) + diff)
+
+  if next_key is None or len(columns[next_key][i][0]) > 0:
+    result += '\033[0m'
+
+  return result
 
 format_str = '{0} {1} {2} {3}'
 
@@ -109,8 +122,8 @@ print(format_str.format(
 
 for i in range(len(columns['head'])):
   print(format_str.format(
-    justify('head',     i),
-    justify('refname',  i),
-    justify('upstream', i),
-    justify('contents', i),
+    justify('head',     i, 'refname' ),
+    justify('refname',  i, 'upstream'),
+    justify('upstream', i, 'contents'),
+    justify('contents', i, None      ),
   ))
