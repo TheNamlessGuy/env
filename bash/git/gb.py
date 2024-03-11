@@ -91,7 +91,7 @@ def justify(key, i, next_key):
   diff = longest[key] - len(columns[key][i][0])
   result = columns[key][i][1]
 
-  if diff > 0 and columns['head'][i][0] == '*':
+  if next_key is not None and diff > 0 and columns['head'][i][0] == '*':
     if len(result) > 0:
       diff -= 1
       result += ' '
