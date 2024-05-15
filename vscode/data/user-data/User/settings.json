@@ -17,6 +17,9 @@
     "workbench.list.openMode": "doubleClick",
     "workbench.startupEditor": "none",
     "update.mode": "none",
+    "window.zoomLevel": -1,
+    "keyboard.dispatch": "keyCode",
+    "git.openRepositoryInParentFolders": "never",
 
     "files.exclude": {
         "**/__pycache__": true

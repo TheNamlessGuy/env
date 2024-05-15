@@ -1,8 +1,22 @@
 [user]
 	name = TheNamlessGuy
-	email = bragux+github@hotmail.com
+	email = thenamlessguy+github@hotmail.com
+[color]
+	status = auto
+	diff = auto
 [pager]
 	diff = less
 	tag = cat
 	branch = cat
 	config = cat
+[core]
+	editor = nano
+	pager = less -+$LESS -R
+[submodules]
+	autoupdate = true
+[alias]
+	pop = stash pop
+	repo = config --get remote.origin.url
+	origin = remote show origin
+[help]
+	autocorrect = 50
