@@ -29,4 +29,7 @@
         "files.trimTrailingWhitespace": false,
         "editor.wordWrap": "off"
     },
+    "update.showReleaseNotes": false,
+    "explorer.confirmPasteNative": false,
+    "files.simpleDialog.enable": true,
 }

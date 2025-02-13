@@ -3,17 +3,17 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 
 SET installdir=%1
 IF "!installdir!"=="" (
-  IF EXIST install-dir.txt (
-    SET /p installdir=<install-dir.txt
+  @REM IF EXIST install-dir.txt (
+  @REM   SET /p installdir=<install-dir.txt
 
-    IF NOT EXIST "!installdir!/Code.exe" (
-      ECHO 'install-dir.txt' seems to be corrupt, as '!installdir!' is not a VSCode installation directory
-      SET /p DUMMY=Hit ENTER to acknowledge...
-      EXIT /b
-    )
+  @REM   IF NOT EXIST "!installdir!/Code.exe" (
+  @REM     ECHO 'install-dir.txt' seems to be corrupt, as '!installdir!' is not a VSCode installation directory
+  @REM     SET /p DUMMY=Hit ENTER to acknowledge...
+  @REM     EXIT /b
+  @REM   )
 
-  ) ELSE (
-    SET /p installdir=Installation directory: 
+  @REM ) ELSE (
+    SET /p installdir=Installation directory:
 
     IF NOT EXIST "!installdir!/Code.exe" (
       ECHO '!installdir!' is not a VSCode installation directory
@@ -22,7 +22,7 @@ IF "!installdir!"=="" (
     )
 
     ECHO !installdir!>install-dir.txt
-  )
+  @REM )
 )
 
 for /F "tokens=*" %%A IN (extensions.txt) do CALL :INSTALL %%A

@@ -114,5 +114,14 @@
   {
     "key": "ctrl+shift+o",
     "command": "-workbench.action.gotoSymbol"
+  },
+  {
+    "key": "shift shift",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+/",
+    "command": "-editor.action.accessibleViewAcceptInlineCompletion",
+    "when": "accessibleViewIsShown && accessibleViewCurrentProviderId == 'inlineCompletions'"
   }
 ]
