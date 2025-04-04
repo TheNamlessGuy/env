@@ -4,9 +4,13 @@ install-extensions() {
   local bin="$1"
   if [[ -z "${bin}" ]]; then
     if [[ ! -z "${VSCODE_BINARY_LOCATION}" ]]; then
-      bin="${VSCODE_BINARY_LOCATION}"
+      bin="$(dirname "${VSCODE_BINARY_LOCATION}")/bin/codium"
     else
       read -p 'VSCode binary location: ' bin
+      if [[ "${bin}" != */bin/codium ]]; then
+        echo >&2 "Path '${bin}' does not point to a /bin/codium endpoint"
+        exit 1
+      fi
     fi
   fi
 

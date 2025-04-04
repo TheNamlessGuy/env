@@ -6,16 +6,16 @@ IF "!installdir!"=="" (
   IF EXIST install-dir.txt (
     SET /p installdir=<install-dir.txt
 
-    IF NOT EXIST "!installdir!/Code.exe" (
+    IF NOT EXIST "!installdir!/VSCodium.exe" (
       ECHO 'install-dir.txt' seems to be corrupt, as '!installdir!' is not a VSCode installation directory
       SET /p DUMMY=Hit ENTER to acknowledge...
       EXIT /b
     )
 
   ) ELSE (
-    SET /p installdir=Installation directory: 
+    SET /p installdir=Installation directory:
 
-    IF NOT EXIST "!installdir!/Code.exe" (
+    IF NOT EXIST "!installdir!/VSCodium.exe" (
       ECHO '!installdir!' is not a VSCode installation directory
       SET /p DUMMY=Hit ENTER to acknowledge...
       EXIT /b
@@ -25,4 +25,4 @@ IF "!installdir!"=="" (
   )
 )
 
-!installdir!\bin\code --list-extensions --show-versions>extensions.txt
+!installdir!\bin\codium --list-extensions --show-versions>extensions.txt

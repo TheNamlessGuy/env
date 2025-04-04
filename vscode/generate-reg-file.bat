@@ -6,16 +6,16 @@ IF "!installdir!"=="" (
   IF EXIST install-dir.txt (
     SET /p installdir=<install-dir.txt
 
-    IF NOT EXIST "!installdir!/Code.exe" (
+    IF NOT EXIST "!installdir!/VSCodium.exe" (
       ECHO 'install-dir.txt' seems to be corrupt, as '!installdir!' is not a VSCode installation directory
       SET /p DUMMY=Hit ENTER to acknowledge...
       EXIT /b
     )
 
   ) ELSE (
-    SET /p installdir=Installation directory: 
+    SET /p installdir=Installation directory:
 
-    IF NOT EXIST "!installdir!/Code.exe" (
+    IF NOT EXIST "!installdir!/VSCodium.exe" (
       ECHO '!installdir!' is not a VSCode installation directory
       SET /p DUMMY=Hit ENTER to acknowledge...
       EXIT /b
@@ -25,7 +25,7 @@ IF "!installdir!"=="" (
   )
 )
 
-SET code=!installdir:\=\\!\\Code.exe
+SET code=!installdir:\=\\!VSCodium.exe
 
 ECHO Windows Registry Editor Version 5.00>open-with-code.reg
 ECHO.>> open-with-code.reg

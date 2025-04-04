@@ -4,12 +4,11 @@ symlink-data() {
   local dir="$"
   if [[ -z "${dir}" ]]; then
     if [[ ! -z "${VSCODE_BINARY_LOCATION}" ]]; then
-      # On linux, the binary is located somewhere like <INSTALL DIR>/bin/code
-      dir="$(dirname "$(dirname "${VSCODE_BINARY_LOCATION}")")"
+      dir="$(dirname "${VSCODE_BINARY_LOCATION}")"
     else
       read -p 'VSCode install dir: ' dir
 
-      if [[ ! -f "${dir}/bin/code" ]]; then
+      if [[ ! -f "${dir}/bin/codium" ]]; then
         echo >&2 "'${dir}' does not seem to be a VSCode install directory"
         exit 1
       fi
