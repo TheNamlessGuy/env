@@ -7,7 +7,7 @@ fi
 
 export EDITOR="/bin/nano"
 export VISUAL="${EDITOR}"
-export LANG="sv_SE.utf8"
+export LANG="en_US.utf8"
 export LESS="-R" # Fuck you git, don't -FX per default you cunt
 
 PS2="\e[0m[[[INCOMPLETE COMMAND]]] >> "

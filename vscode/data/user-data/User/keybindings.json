@@ -74,7 +74,7 @@
     "when": "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
   },
   {
-    "key": "shift+f6",
+    "key": "f2",
     "command": "editor.action.rename",
     "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
   },
@@ -125,7 +125,7 @@
     "when": "accessibleViewIsShown && accessibleViewCurrentProviderId == 'inlineCompletions'"
   },
   {
-    "key": "shift+f6",
+    "key": "f2",
     "command": "renameFile",
     "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
   },

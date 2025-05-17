@@ -1,7 +1,7 @@
 #!/bin/bash
 
 symlink-data() {
-  local dir="$"
+  local dir="$1"
   if [[ -z "${dir}" ]]; then
     if [[ ! -z "${VSCODE_BINARY_LOCATION}" ]]; then
       dir="$(dirname "${VSCODE_BINARY_LOCATION}")"
