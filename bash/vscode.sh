@@ -8,5 +8,5 @@ vscode() {
   [[ -z "${wd}" ]] && wd="."
   [[ -f "${wd}" ]] && wd="$(dirname "${wd}")"
 
-  "${VSCODE_BINARY_LOCATION}" "${wd}" &> /dev/null &
+  "${VSCODE_BINARY_LOCATION}" "${wd}" &> /dev/null & disown
 }

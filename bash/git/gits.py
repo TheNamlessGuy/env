@@ -25,8 +25,9 @@ def translate_status(s, f):
     return [['', '']]
 
   # Unstaged
-  if s == '??':
-    return [[UNSTAGED, '']]
+  if s == '??': return [[UNSTAGED, '']]
+  if s[1] == 'A':
+    if s[0] == ' ': return [[UNSTAGED, NEW]]
 
   # Conflict
   if f in CONFLICT_FILES:
@@ -105,14 +106,18 @@ opts = {
   'ignore': [],
 }
 
-for arg in args:
-  if arg.startswith('-c'):
+i = 0
+while i < len(args):
+  if args[i].startswith('-c'):
     opts['collapse'] = args[i][2:]
-  elif arg == '--ignore':
-    opts['ignore'].append(args[i + 1])
+  elif args[i] == '--ignore':
+    i += 1
+    opts['ignore'].append(args[i])
   else:
-    print("Unknown flag '{0}'".format(arg))
+    print("Unknown flag '{0}'".format(args[i]))
     exit(1)
+
+  i += 1
 
 output = subprocess.check_output(['git', 'status', '--porcelain', '-s']).decode('utf-8')[:-1].split('\n')
 for line in output:
