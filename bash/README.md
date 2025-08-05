@@ -1,5 +1,4 @@
 # Usage instructions
-
 In ~/.bash_aliases or wherever, add the following lines:
 ```bash
 export BS_LOCATION="<REPO ROOT>/bash"

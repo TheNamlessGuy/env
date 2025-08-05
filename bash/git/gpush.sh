@@ -13,9 +13,10 @@ gpush() {
 
   local prefix_flags=""
   local local_branch="$(git rev-parse --abbrev-ref HEAD)"
+  local remote="origin"
 
   if [[ -z "${branch}" ]]; then
-    local branch="$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2> /dev/null | sed 's#^origin/##')"
+    local branch="$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2> /dev/null)"
     if [[ -z "${branch}" ]]; then
       local response=""
       read -r -p "No upstream branch found, try to create remote branch with name '${local_branch}'? [y/N] " response
@@ -26,8 +27,10 @@ gpush() {
       prefix_flags="${prefix_flags} --set-upstream"
       branch="${local_branch}"
     else
+      remote="$(echo "${branch}" | sed 's#/.*$##')"
+      branch="$(echo "${branch}" | sed 's#^.*/##')"
       local response=""
-      read -r -p "Push local branch '${local_branch}' to branch '${branch}'? [Y/n] " response
+      read -r -p "Push local branch '${local_branch}' to remote branch '${remote}/${branch}'? [Y/n] " response
       if [[ "${response}" == *"n"* || "${response}" == *"N"* ]]; then
         return 0
       fi
@@ -36,7 +39,7 @@ gpush() {
     echo
   fi
 
-  git push ${prefix_flags} origin "${local_branch}:${branch}" "${arr[@]}"
+  git push ${prefix_flags} "${remote}" "${local_branch}:${branch}" "${arr[@]}"
 }
 
 _comp_gpush() {
