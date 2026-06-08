@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+ServiceTypes=KonqPopupMenu/Plugin
+MimeType=inode/directory;inode/file;application/octet-stream;
+Actions=VSCodiumOpenFolder
+X-KDE-Priority=TopLevel
+
+[Desktop Action VSCodiumOpenFolder]
+Name=Open folder in VSCodium
+Exec="{{ORIGINAL_DIR}}/run.sh" "%f"

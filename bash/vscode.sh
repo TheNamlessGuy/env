@@ -1,12 +1,22 @@
 vscode() {
-  if [[ ! -f "${VSCODE_BINARY_LOCATION}" ]]; then
-    echo >&2 "'\$VSCODE_BINARY_LOCATION' does not point to a file (value: '${VSCODE_BINARY_LOCATION}')"
+  if [[ ! -x "${VSCODE_BINARY_LOCATION}" ]]; then
+    echo >&2 "'\$VSCODE_BINARY_LOCATION' ('${VSCODE_BINARY_LOCATION}') does not point to an executable file"
     return 1
   fi
 
-  local wd="$1"
-  [[ -z "${wd}" ]] && wd="."
-  [[ -f "${wd}" ]] && wd="$(dirname "${wd}")"
+  if [[ $# -eq 0 ]]; then
+    "${VSCODE_BINARY_LOCATION}" . &> /dev/null & disown
+    return 0
+  fi
 
-  "${VSCODE_BINARY_LOCATION}" "${wd}" &> /dev/null & disown
+  local root="$1"
+  shift
+
+  if [[ -f "${root}" ]]; then
+    local file="${root}"
+    root="$(dirname "${root}")"
+    "${VSCODE_BINARY_LOCATION}" "${root}" "${file}" "$@" &> /dev/null & disown
+  else
+    "${VSCODE_BINARY_LOCATION}" "${root}" "$@" &> /dev/null & disown
+  fi
 }

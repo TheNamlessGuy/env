@@ -1,0 +1,25 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+ServiceTypes=KonqPopupMenu/Plugin
+MimeType=application/vnd.microsoft.portable-executable;application/x-ms-dosexec;application/x-ms-ne-executable;application/x-msdownload;
+Actions=initialize;symlink_root;symlink_local;install_dxvk;
+X-KDE-Priority=TopLevel
+X-KDE-Submenu=WineWrapper
+Icon={{ORIGINAL_DIR}}/icon.128.png
+
+[Desktop Action initialize]
+Name=Initialize the prefix
+Exec="{{ORIGINAL_DIR}}/run.sh" %F --initialize
+
+[Desktop Action symlink_root]
+Name=Symlink root to Z:/
+Exec="{{ORIGINAL_DIR}}/run.sh" %F --symlink-root
+
+[Desktop Action symlink_local]
+Name=Symlink the EXE path to D:/
+Exec="{{ORIGINAL_DIR}}/run.sh" %F --symlink-local
+
+[Desktop Action install_dxvk]
+Name=Install DXVK
+Exec="{{ORIGINAL_DIR}}/run.sh" %F --tricks dxvk

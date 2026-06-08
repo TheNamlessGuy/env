@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Wine Wrapper
+Comment=Run Windows programs with a per-exe wine prefix
+Exec="{{ORIGINAL_DIR}}/run.sh" "%f"
+Icon={{ORIGINAL_DIR}}/icon.128.png
+Terminal=false
+Categories=Utility;
+NoDisplay=false
+MimeType=application/vnd.microsoft.portable-executable;application/x-ms-dosexec;application/x-ms-ne-executable;application/x-msdownload;

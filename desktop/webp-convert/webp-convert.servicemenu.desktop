@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+MimeType=image/webp;
+Icon=image
+Actions=webp_convert;
+
+[Desktop Action webp_convert]
+Name=Replace .webp with appropriate format
+Icon=transform-move
+Exec="{{ORIGINAL_DIR}}/convert.sh" %F

@@ -1,0 +1,28 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+ServiceTypes=KonqPopupMenu/Plugin
+MimeType=application/x-7z-compressed;application/zip;application/x-xz;application/x-bzip;application/gzip;
+Actions=extract_here;extract_here_delete;extract_own;extract_own_delete;
+X-KDE-Priority=TopLevel
+X-KDE-Submenu=Extract…
+
+[Desktop Action extract_here]
+Name=Extract here
+Icon=archive-extract
+Exec="{{ORIGINAL_DIR}}/extract.sh" here %F
+
+[Desktop Action extract_here_delete]
+Name=Extract here and delete archive
+Icon=archive-extract
+Exec="{{ORIGINAL_DIR}}/extract.sh" here_delete %F
+
+[Desktop Action extract_own]
+Name=Extract to own folder
+Icon=archive-extract
+Exec="{{ORIGINAL_DIR}}/extract.sh" own %F
+
+[Desktop Action extract_own_delete]
+Name=Extract to own folder and delete archive
+Icon=archive-extract
+Exec="{{ORIGINAL_DIR}}/extract.sh" own_delete %F

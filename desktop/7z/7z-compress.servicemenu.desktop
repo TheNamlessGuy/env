@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=KonqPopupMenu/Plugin
+MimeType=all/allfiles;inode/directory;
+Actions=compress7zmax;
+X-KDE-Priority=TopLevel
+
+[Desktop Action compress7zmax]
+Name=Compress to .7z
+Icon=archive-insert
+Exec="{{ORIGINAL_DIR}}/compress.sh" %F
