@@ -1,5 +1,5 @@
 show() {
-  if [[ -z "$@" ]]; then
+  if [[ $# -eq 0 ]]; then
     cat | tr ' ' '\n'
   else
     echo "$@" | tr ' ' '\n'

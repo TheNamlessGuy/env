@@ -20,3 +20,5 @@
 	origin = remote show origin
 [help]
 	autocorrect = 50
+[include]
+	path = ~/.gitconfig.local

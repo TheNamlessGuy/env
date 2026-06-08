@@ -1,5 +1,5 @@
 ttime() {
-  local t="$(time ($@ 2>&1) 3>&1 1>&2 2>&3)"
+  local t="$(time ("$@" 2>&1) 3>&1 1>&2 2>&3)"
 
   local real="$(echo "$t" | sed -n 2p | awk '{print $2}')"
   local user="$(echo "$t" | sed -n 3p | awk '{print $2}')"

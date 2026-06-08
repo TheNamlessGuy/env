@@ -1,5 +1,5 @@
 gitc() {
-  git checkout $@
+  git checkout "$@"
 }
 
 _comp_gitc() {

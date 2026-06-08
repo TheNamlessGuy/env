@@ -1,6 +1,11 @@
 gcleantags() {
-  echo "Clearing tags..."
-  git tag -l | xargs git tag -d &> /dev/null
-  echo "Fetching tags..."
-  git fetch -t &> /dev/null
+  echo "+------------------+"
+  echo "| Clearing tags... |"
+  echo "+------------------+"
+  git tag -l | xargs git tag -d
+
+  echo "+------------------+"
+  echo "| Fetching tags... |"
+  echo "+------------------+"
+  git fetch -t
 }

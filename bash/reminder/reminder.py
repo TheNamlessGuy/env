@@ -64,7 +64,7 @@ def parse_args__clear(args):
 
   for r in range(len(retval['id'])):
     if not retval['id'][r].isnumeric():
-      helptext(error = "The given ID '%s' is not numeric".format(retval['id'][r]))
+      helptext(error = "The given ID '{0}' is not numeric".format(retval['id'][r]))
     retval['id'][r] = int(retval['id'][r])
 
   return retval

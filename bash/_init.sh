@@ -25,11 +25,11 @@ if [[ -f "${BS_LOCATION}/local/_init.sh" ]]; then
 fi
 
 # Source all <name>.sh
-for f in "${BS_LOCATION}/"*.sh "${BS_LOCATION}/"**/*.sh "${BS_LOCATION}/".*.sh "${BS_LOCATION}/"**/.*.sh; do
-    if [[ -f "${f}" && ! "$(basename ${f})" == _* ]]; then
-      source "${f}"
-    fi
-done
+while IFS= read -r f; do
+  if [[ ! "$(basename "${f}")" == _* ]]; then
+    source "${f}"
+  fi
+done < <(find "${BS_LOCATION}" -type f '(' -name '*.sh' -o -name '.*.sh' ')')
 
 set_PS1
 cclear

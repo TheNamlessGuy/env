@@ -32,17 +32,35 @@ cd() {
 
 _comp_cd() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
-  local sct="$(echo "${cur}" | sed -e 's#/#\n#g' | head -1)"
-  local rest="${cur/$sct/}"
+  local sct="$(printf '%s\n' "$cur" | sed -e 's#/#\n#g' | head -1)"
+  local rest="${cur#"${sct}"}"
   [[ -z "${rest}" ]] && rest="/"
 
-  if [[ ! -z "${sct}" && ! -d "${sct}" && "$(lssct "${sct}")" != "" ]]; then
+  if [[ ! -z "${sct}" && ! -d "${sct}" && -n "$(lssct "${sct}")" ]]; then
     cur="$(lssct --path-only "${sct}")${rest}"
   fi
 
   if [[ "${cur}" != "-"* ]]; then
-    COMPREPLY=($(compgen -d -- "${cur}" | sed 's#$#/#g'))
-    COMPREPLY+=($(compgen -W "$(lssct --name-only)" -- "${cur}"))
+    COMPREPLY=()
+
+    # Directories
+    {
+      local IFS=$'\n'
+      local dirs=($(compgen -d -- "${cur}"))
+      local d
+      for d in "${dirs[@]}"; do
+        COMPREPLY+=("${d}/")
+      done
+    }
+
+    # Shortcuts
+    {
+      local names="$(lssct --name-only || printf '')"
+      if [[ -n "${names}" ]]; then
+        local IFS=$'\n'
+        COMPREPLY+=($(compgen -W "${names}" -- "${cur}"))
+      fi
+    }
   fi
 }
 complete -o nospace -F _comp_cd cd

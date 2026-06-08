@@ -2,7 +2,7 @@ gb() {
   if [[ -z "$@" ]]; then
     "$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")/gb.py"
   else
-     git branch $@
+     git branch "$@"
   fi
 }
 
