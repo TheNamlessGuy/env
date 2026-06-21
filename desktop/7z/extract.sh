@@ -15,33 +15,60 @@ PROGRESS_OBJECT="${PROGRESS_LINE#* }"
 # For each selected archive…
 for arch in "$@"; do
   # Where the archive *is*, not where it might point
-  arch_path="$arch"
-  arch_dir="$(dirname "$arch_path")"
-  arch_name="$(basename "$arch_path")"
+  arch_path="${arch}"
+  arch_dir="$(dirname "${arch_path}")"
+  arch_name="$(basename "${arch_path}")"
   arch_base="${arch_name%.*}"   # strip extension
+
+  # Detect extension (simple, but good enough for .rar vs others)
+  ext="${arch_name##*.}"
+  is_rar="-"
+  if [[ "$ext" == "rar" ]]; then
+    is_rar=""
+  fi
 
   case "$mode" in
     here)
       # Extract into the current folder (no extra folder)
-      ( cd "$arch_dir" && 7z x -- "$arch_path" )
+      if [[ -z "${is_rar}" ]]; then
+        ( cd "${arch_dir}" && unrar x -o+ -- "${arch_path}" )
+      else
+        ( cd "${arch_dir}" && 7z x -- "${arch_path}" )
+      fi
       ;;
 
     here_delete)
-      ( cd "$arch_dir" && 7z x -- "$arch_path" )
-      rm -f -- "$arch_path"
+      if [[ -z "${is_rar}" ]]; then
+        ( cd "${arch_dir}" && unrar x -o+ -- "${arch_path}" )
+      else
+        ( cd "${arch_dir}" && 7z x -- "${arch_path}" )
+      fi
+
+      rm -f -- "${arch_path}"
       ;;
 
     own)
-      target_dir="$arch_dir/$arch_base"
-      mkdir -p -- "$target_dir"
-      7z x -o"$target_dir" -- "$arch_path"
+      target_dir="${arch_dir}/${arch_base}"
+      mkdir -p -- "${target_dir}"
+
+      if [[ -z "${is_rar}" ]]; then
+        ( cd "${arch_dir}" && unrar x -o+ -- "${arch_path}" "${target_dir}/" )
+      else
+        7z x -o"${target_dir}" -- "${arch_path}"
+      fi
       ;;
 
     own_delete)
-      target_dir="$arch_dir/$arch_base"
-      mkdir -p -- "$target_dir"
-      7z x -o"$target_dir" -- "$arch_path"
-      rm -f -- "$arch_path"
+      target_dir="${arch_dir}/${arch_base}"
+      mkdir -p -- "${target_dir}"
+
+      if [[ -z "${is_rar}" ]]; then
+        ( cd "${arch_dir}" && unrar x -o+ -- "${arch_path}" "${target_dir}/" )
+      else
+        7z x -o"${target_dir}" -- "${arch_path}"
+      fi
+
+      rm -f -- "${arch_path}"
       ;;
 
     *)

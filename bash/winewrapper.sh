@@ -99,12 +99,12 @@ winewrapper() {
 
     tricks)
       if [[ ${#ARGS[@]} -eq 0 ]]; then
-        echo >&2 "No arguments given to --tricks"
-        return 1
+        echo "Running winetricks with no args"
+        WINEPREFIX="${WINE_PREFIX_DIR}" winetricks "${ARGS[@]}"
+      else
+        echo "Running winetricks with args: ${ARGS[*]}"
+        WINEPREFIX="${WINE_PREFIX_DIR}" winetricks "${ARGS[@]}"
       fi
-
-      echo "Running winetricks in prefix '${WINE_PREFIX_DIR}': ${ARGS[*]}"
-      WINEPREFIX="${WINE_PREFIX_DIR}" winetricks "${ARGS[@]}"
     ;;
 
     symlink-root)

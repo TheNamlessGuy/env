@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+ServiceTypes=KonqPopupMenu/Plugin
+MimeType=image/avif;
+Icon=image
+Actions=avif_convert;
+X-KDE-Priority=TopLevel
+X-KDE-Submenu=Replace .avif...
+
+[Desktop Action avif_convert]
+Name=...with appropriate format
+Icon=transform-move
+Exec="{{ORIGINAL_DIR}}/convert.sh" %F
