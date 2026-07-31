@@ -6,7 +6,7 @@ if [ "$#" -eq 0 ]; then
   exit 0
 fi
 
-# Use the paths as Dolphin passes them (they are already absolute)
+# Dolphin sends absolute paths per default
 abs_paths=()
 for arg in "$@"; do
   abs_paths+=("$arg")
@@ -28,7 +28,6 @@ else
   outfile="$parent_dir/$base.7z"
 fi
 
-# If an archive with that name already exists, ask before overwriting
 if [ -e "$outfile" ]; then
   kdialog --warningyesno "Archive exists:\n$outfile\n\nOverwrite?" || exit 1
   rm -f -- "$outfile"

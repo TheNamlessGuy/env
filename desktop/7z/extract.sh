@@ -2,7 +2,7 @@
 set -euo pipefail
 
 mode="$1"
-shift  # remaining args are archives
+shift # remaining args are archives
 
 if [ -z "$mode" ] || [ "$#" -eq 0 ]; then
   exit 0
@@ -18,9 +18,8 @@ for arch in "$@"; do
   arch_path="${arch}"
   arch_dir="$(dirname "${arch_path}")"
   arch_name="$(basename "${arch_path}")"
-  arch_base="${arch_name%.*}"   # strip extension
+  arch_base="${arch_name%.*}" # strip extension
 
-  # Detect extension (simple, but good enough for .rar vs others)
   ext="${arch_name##*.}"
   is_rar="-"
   if [[ "$ext" == "rar" ]]; then
@@ -29,7 +28,6 @@ for arch in "$@"; do
 
   case "$mode" in
     here)
-      # Extract into the current folder (no extra folder)
       if [[ -z "${is_rar}" ]]; then
         ( cd "${arch_dir}" && unrar x -o+ -- "${arch_path}" )
       else
@@ -72,7 +70,6 @@ for arch in "$@"; do
       ;;
 
     *)
-      # Unknown mode
       exit 1
       ;;
   esac

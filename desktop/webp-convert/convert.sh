@@ -11,6 +11,24 @@
 
 set -euo pipefail
 
+trash_file() {
+  local f="$1"
+
+  if command -v kioclient5 >/dev/null 2>&1; then
+    kioclient5 move "$f" trash:/ >/dev/null 2>&1 && return 0
+  fi
+
+  if command -v gio >/dev/null 2>&1; then
+    gio trash "$f" >/dev/null 2>&1 && return 0
+  fi
+
+  if command -v trash-put >/dev/null 2>&1; then
+    trash-put "$f" >/dev/null 2>&1 && return 0
+  fi
+
+  return 1
+}
+
 if [ "$#" -eq 0 ]; then
   exit 0
 fi
@@ -42,7 +60,7 @@ for input in "$@"; do
   name="${base%.*}"
 
   # 1. Check if animated (more than 1 frame)
-  frames=$(magick identify -format '%n' "$input" | head -n1 || echo 1)
+  frames=$(magick identify "$input" | wc -l || echo 1)
   # 2. Check for alpha channel (transparency)
   channels=$(magick identify -format '%[channels]' "$input" | head -n1 || echo "")
 
@@ -91,7 +109,12 @@ for input in "$@"; do
   fi
 
   # Conversion succeeded → move source to Trash
-  kioclient5 trash "$input"
+  if ! trash_file "$input"; then
+    notify-send \
+      --app-name="WebP Converter" \
+      "WebP conversion" \
+      "[$current/$total] $base: Couldn't move to Trash; original file left in place."
+  fi
 
   # Update progress notification
   current=$(( current + 1 ))
