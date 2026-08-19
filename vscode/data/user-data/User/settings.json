@@ -32,6 +32,7 @@
     "workbench.list.openMode": "doubleClick",
     "workbench.settings.editor": "json",
     "workbench.startupEditor": "none",
+    "window.confirmSaveUntitledWorkspace": false,
 
     "files.exclude": {
         "**/__pycache__": true,
@@ -46,6 +47,14 @@
     "code-eol.newlineCharacter": "↓",
     "code-eol.returnCharacter": "←",
     "code-eol.crlfCharacter": "←↓",
+
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        "*.gd": "${capture}.gd.uid",
+        "*.lua": "${capture}.lua.uid",
+        "*.svg": "${capture}.svg.import",
+    },
 
     /* Theme below - keep at bottom */
     "workbench.colorTheme": "Default Dark Modern",
@@ -99,13 +108,5 @@
         "tab.hoverBackground": "#000070",
         "tab.inactiveBackground": "#000020",
         "titleBar.activeBackground": "#000000",
-    },
-
-    "explorer.fileNesting.enabled": true,
-    "explorer.fileNesting.expand": false,
-    "explorer.fileNesting.patterns": {
-        "*.gd": "${capture}.gd.uid",
-        "*.lua": "${capture}.lua.uid",
-        "*.svg": "${capture}.svg.import",
-    },
+    }
 }

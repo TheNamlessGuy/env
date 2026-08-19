@@ -29,24 +29,47 @@ else
 fi
 
 if [ -e "$outfile" ]; then
-  kdialog --warningyesno "Archive exists:\n$outfile\n\nOverwrite?" || exit 1
+  kdialog --warningyesno "Archive exists:\n${outfile}\n\nOverwrite?" || exit 1
   rm -f -- "$outfile"
 fi
 
-PROGRESS_LINE="$(kdialog --progressbar "Creating archive:\n$outfile" 0)"
+PROGRESS_LINE="$(kdialog --progressbar "Creating archive:\n${outfile}" 100)"
 PROGRESS_SERVICE="${PROGRESS_LINE%% *}"
 PROGRESS_OBJECT="${PROGRESS_LINE#* }"
 
+qdbus "${PROGRESS_SERVICE}" "${PROGRESS_OBJECT}" setAllowCancel   false 2> /dev/null || true
+qdbus "${PROGRESS_SERVICE}" "${PROGRESS_OBJECT}" showCancelButton false 2> /dev/null || true
+qdbus "${PROGRESS_SERVICE}" "${PROGRESS_OBJECT}" setAutoClose     false 2> /dev/null || true
+
+set +e
 # 7z settings:
 # -t7z : 7z format
 # -mx=9 : highest compression level
-7z a -t7z -mx=9 -- "$outfile" "${abs_paths[@]}"
+stdbuf -o0 -e0 7z a -t7z -mx=9 -bsp1 -- "${outfile}" "${abs_paths[@]}" 2>&1 | tr '\b\r' '\n\n' | \
+while IFS= read -r line; do
+  if [[ "${line}" =~ ([0-9]{1,3})% ]]; then
+    percentage="${BASH_REMATCH[1]}"
+    (( percentage > 100 )) && percentage=100
+
+    qdbus "${PROGRESS_SERVICE}" "${PROGRESS_OBJECT}" Set "" value "${percentage}" 2> /dev/null || true
+  fi
+done
+
+zipping_status="${PIPESTATUS[0]:-1}" # This needs to be directly after the loop being piped to
+set -e
+
+if [[ "${zipping_status}" -ne 0 ]]; then
+  qdbus "${PROGRESS_SERVICE}" "${PROGRESS_OBJECT}" close 2> /dev/null || true
+  rm -f -- "${outfile}"
+  kdialog --error "Archive creation failed:\n${outfile}"
+  exit "${zipping_status}"
+fi
+
+qdbus "${PROGRESS_SERVICE}" "${PROGRESS_OBJECT}" Set "" value "100" 2> /dev/null || true
 
 # Make sure everything is written before Dolphin/Ark sees it
 sync
 sleep 1
 
-if [[ -n "${PROGRESS_SERVICE}" && -n "${PROGRESS_OBJECT}" ]]; then
-  qdbus "$PROGRESS_SERVICE" "$PROGRESS_OBJECT" close 2>/dev/null || true
-  kdialog --passivepopup "Archive created:\n$outfile" 3 & disown || true
-fi
+qdbus "${PROGRESS_SERVICE}" "${PROGRESS_OBJECT}" close 2>/dev/null || true
+kdialog --passivepopup "Archive created:\n${outfile}" 3 & disown || true
