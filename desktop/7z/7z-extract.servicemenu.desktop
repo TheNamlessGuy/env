@@ -1,6 +1,5 @@
 [Desktop Entry]
 Type=Service
-X-KDE-ServiceTypes=KonqPopupMenu/Plugin
 ServiceTypes=KonqPopupMenu/Plugin
 MimeType=application/x-7z-compressed;application/zip;application/x-xz;application/x-bzip;application/gzip;application/vnd.rar;application/x-rar;application/x-rar-compressed;
 Actions=extract_here;extract_here_delete;extract_own;extract_own_delete;
