@@ -1,0 +1,24 @@
+MenuBar=Disabled
+
+[Desktop Entry]
+DefaultProfile=Profile 1.profile
+
+[General]
+ConfigVersion=1
+
+[MainWindow][Toolbar mainToolBar]
+IconSize=16
+
+[MainWindow][Toolbar sessionToolbar]
+IconSize=16
+ToolButtonStyle=IconOnly
+
+[Notification Messages]
+CloseAllEmptyTabs=true
+
+[Toolbar mainToolBar]
+IconSize=16
+
+[Toolbar sessionToolbar]
+IconSize=16
+ToolButtonStyle=IconOnly
