@@ -101,3 +101,8 @@ user_pref("media.videocontrols.picture-in-picture.enabled", false);
 
 /** Always show bookmark toolbar */
 user_pref("browser.toolbars.bookmarks.visibility", "always");
+
+/** Disable "XXX is now fullscreen" message */
+user_pref("full-screen-api.warning.timeout", 0);
+user_pref("full-screen-api.transition-duration.enter", "0 0");
+user_pref("full-screen-api.transition-duration.leave", "0 0");
