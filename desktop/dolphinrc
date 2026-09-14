@@ -1,0 +1,32 @@
+[ContentDisplay]
+UseShortRelativeDates=false
+
+[ContextMenu]
+ShowCopyToOtherSplitView=false
+ShowViewMode=false
+
+[DetailsMode]
+ExpandableFolders=false
+PreviewSize=22
+RightPadding=0
+
+[General]
+ConfirmClosingMultipleTabs=false
+DoubleClickViewAction=none
+OpenNewTabAfterLastTab=true
+RememberOpenedTabs=false
+ShowFullPath=true
+ShowFullPathInTitlebar=true
+ShowStatusBar=FullWidth
+Version=202
+ViewPropsTimestamp=2025,5,16,20,52,19.175
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+
+[Notification Messages]
+ConfirmOpenManyFolders=false
+
+[PreviewSettings]
+Plugins=audiothumbnail,blenderthumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,mobithumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,rom-properties-kf6,svgthumbnail,ffmpegthumbs
