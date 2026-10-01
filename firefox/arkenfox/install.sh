@@ -6,6 +6,7 @@ set -euo pipefail
 
 DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
 PROFILES_DIR="$(readlink -f "${DIR}/..")/profiles"
+OVERRIDES_DIR="$(readlink -f "${DIR}"/profile-overrides)"
 
 BASELINE="${DIR}/files/user.js"
 OVERRIDES="${DIR}/user-overrides.js"
@@ -42,6 +43,12 @@ while IFS= read -r profile; do
   cat "${BASELINE}" > "${profile}/user.js"
   printf '\n\n/*** === USER OVERRIDES BELOW === ***/\n\n' >> "${profile}/user.js"
   cat "${OVERRIDES}" >> "${profile}/user.js"
+
+  profile_override_file="${OVERRIDES_DIR}/${name}.js"
+  if [[ -f "${profile_override_file}" ]]; then
+    printf '\n\n/*** === PROFILE SPECIFIC OVERRIDES BELOW === ***/\n\n' >> "${profile}/user.js"
+    cat "${profile_override_file}" >> "${profile}/user.js"
+  fi
 
   cp "${CLEANER}" "${profile}/prefsCleaner.sh"
   chmod +x "${profile}/prefsCleaner.sh"

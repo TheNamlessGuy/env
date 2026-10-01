@@ -6,3 +6,4 @@ vscode/data/
 */install-dir.txt
 vscode/open-with-code.reg
 firefox/profiles/*
+firefox/arkenfox/profile-overrides/*
